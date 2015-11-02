@@ -4,30 +4,48 @@ contactManagement.controller('ListContactCtrl', function ($scope){
 	$scope.contacts = [
 		{
 			id:1,
-			email:'demo1@gmail.com',
-			firstname: 'Ton',
-			lastname: 'Cuong',
+			email:'maurisfermentum@gmail.com',
+			firstname: 'Mauris',
+			lastname: 'Fermentum',
 			gender: 'Male',
 			phone: '01225550246',
-			address: 'Tan Phu Dist, HCMC'
+			address: 'Purus an ligula bibendum dan venenatis nib pellentesque'
 		},
 		{
 			id:2,
-			email:'demo2@gmail.com',
-			firstname: 'Ton',
-			lastname: 'Cuong',
-			gender: 'Male',
-			phone: '01225550246',
-			address: 'Tan Phu Dist, HCMC'
+			email:'nuncsitamet@gmail.com',
+			firstname: 'Nunc',
+			lastname: 'Sit amet',
+			gender: 'Female',
+			phone: '01235550246',
+			address: 'cosmopolis ligula nulla tincidunt venenatis.'
 		},
 		{
 			id:3,
-			email:'demo3@gmail.com',
-			firstname: 'Ton',
-			lastname: 'Cuong',
+			email:'montemous@gmail.com',
+			firstname: 'Montemous',
+			lastname: 'Quis',
 			gender: 'Male',
-			phone: '01225550246',
-			address: 'Tan Phu Dist, HCMC'
+			phone: '01255550246',
+			address: 'Dincidunteros Consequuntur magni dolores'
+		},
+		{
+			id:4,
+			email:'quis@gmail.com',
+			firstname: 'Quis',
+			lastname: 'Montemous',
+			gender: 'Male',
+			phone: '01255550246',
+			address: 'Consequuntur Dincidunteros magni dolores'
+		},
+		{
+			id:5,
+			email:'consequuntur@gmail.com',
+			firstname: 'Consequuntur',
+			lastname: 'Dincidunteros',
+			gender: 'Female',
+			phone: '01255550246',
+			address: 'Consequuntur Dincidunteros magni dolores'
 		}
 	];
 
@@ -39,8 +57,15 @@ contactManagement.controller('ListContactCtrl', function ($scope){
 		});
 	};
 
-	$scope.updateName = function(contact, newEmail){
-		contact.email = newEmail;
+	$scope.update = function(email, newEmail){
+		email = newEmail;
+	};
+
+	$scope.predicate = 'email';
+	$scope.reverse = true;
+	$scope.order = function(predicate) {
+		$scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+		$scope.predicate = predicate;
 	};
 
 });
