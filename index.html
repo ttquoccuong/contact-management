@@ -40,22 +40,40 @@
 									<input type="text" class="form-control" placeholder="Search ..." ng-model="query">
 								</div>
 							</div>
-							<div class="col-xs-4 col-sm-8">
-								<button class="btn btn-primary pull-right" data-toggle="modal" data-target="#addNewModal">Add new Contact</button>
+							<div class="col-xs-4 col-sm-8 text-right">
+								<button class="btn btn-warning" ng-click="predicate=''">Clear Sort</button>
+								<button class="btn btn-primary" data-toggle="modal" data-target="#addNewModal">Add new Contact</button>
 							</div>
 						</div>
 
 						<div class="table-responsive list-view">
-							[ <a href="" ng-click="predicate=''">unsorted</a> ]
 							<table class="table table-hover">
 								<thead>
 									<tr>
-										<th><a href="" ng-click="order('email')">Email</a></th>
-										<th><a href="" ng-click="order('firstname')">First name</a></th>
-										<th><a href="" ng-click="order('lastname')">Last name</a></th>
-										<th><a href="" ng-click="order('gender')">Gender</a></th>
-										<th><a href="" ng-click="order('phone')">Phone</a></th>
-										<th><a href="" ng-click="order('address')">Address</a></th>
+										<th>
+											<a href="" ng-click="order('email')">Email</a>
+											<span class="sortorder fa" ng-show="predicate === 'email'" ng-class="{reverse:reverse}"></span>
+										</th>
+										<th>
+											<a href="" ng-click="order('firstname')">First name</a>
+											<span class="sortorder fa" ng-show="predicate === 'firstname'" ng-class="{reverse:reverse}"></span>
+										</th>
+										<th>
+											<a href="" ng-click="order('lastname')">Last name</a>
+											<span class="sortorder fa" ng-show="predicate === 'lastname'" ng-class="{reverse:reverse}"></span>
+										</th>
+										<th>
+											<a href="" ng-click="order('gender')">Gender</a>
+											<span class="sortorder fa" ng-show="predicate === 'gender'" ng-class="{reverse:reverse}"></span>
+										</th>
+										<th>
+											<a href="" ng-click="order('phone')">Phone</a>
+											<span class="sortorder fa" ng-show="predicate === 'phone'" ng-class="{reverse:reverse}"></span>
+										</th>
+										<th>
+											<a href="" ng-click="order('address')">Address</a>
+											<span class="sortorder fa" ng-show="predicate === 'address'" ng-class="{reverse:reverse}"></span>
+										</th>
 										<th>Option</th>
 									</tr>
 								</thead>
