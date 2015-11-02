@@ -58,27 +58,3 @@ contactManagement.controller('AddContactCtrl', function ($scope) {
 		$('#addNewModal').modal('hide');
 	};
 });
-
-// contactManagement.controller('EditContactCtrl', function ($scope) {
-// 	$scope.getContactByEmail = function (email) {
-// 		angular.forEach($scope.contacts, function (contact) {
-// 			if(contact.email == email){
-// 				$("#updateModal").modal('show');
-// 				email		= contact.email;
-// 				firstname	= contact.firstname;
-// 				lastname	= contact.lastname;
-// 				gender		= contact.gender;
-// 				phone		= contact.phone;
-// 				address		= contact.address;
-// 			}
-// 		});
-// 	};
-
-// 	$scope.update = function (email, contact) {
-// 		angular.forEach($scope.contacts, function (temp) {
-// 			if(temp.email === email){
-// 				$scope.contacts[].temp = contact;
-// 			}
-// 		});
-// 	}
-// });
