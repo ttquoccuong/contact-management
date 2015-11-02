@@ -57,9 +57,12 @@ contactManagement.controller('ListContactCtrl', function ($scope){
 		});
 	};
 
-	$scope.update = function(email, newEmail){
-		email = newEmail;
-	};
+	$scope.updateEmail 		= function(contact, data){ contact.email = data; };
+	$scope.updateFirstname 	= function(contact, data){ contact.firstname = data; };
+	$scope.updateLastname 	= function(contact, data){ contact.lastname = data; };
+	$scope.updateGender 	= function(contact, data){ contact.gender = data; };
+	$scope.updatePhone 		= function(contact, data){ contact.phone = data; };
+	$scope.updateAddress 	= function(contact, data){ contact.address = data; };
 
 	$scope.predicate = 'email';
 	$scope.reverse = true;

@@ -81,17 +81,64 @@
 									<tr>
 										<td>
 											{{contact.email}}
-											<a href="#" ng-show="!showUpdate" ng-click="newEmail = contact.email; showUpdate = true"><i class="fa fa-edit"></i></a>
-											<div ng-show="showUpdate">
-												<input type="text" ng-model="newEmail">
-												<input type="button" value="update" ng-click="update(contact.email, newEmail); showUpdate = false;">
+											<a href="#" class="edit-button" ng-show="!showEmailUpdate" ng-click="data = contact.email; showEmailUpdate = true"><i class="fa fa-edit"></i></a>
+											<div ng-show="showEmailUpdate" class="input-group">
+												<input type="text" class="form-control" ng-model="data">
+												<span class="input-group-btn">
+													<button class="btn btn-warning" ng-click="updateEmail(contact, data); showEmailUpdate = false;">Save</button>
+												</span>
 											</div>
 										</td>
-										<td>{{contact.firstname}}</td>
-										<td>{{contact.lastname}}</td>
-										<td>{{contact.gender}}</td>
-										<td>{{contact.phone}}</td>
-										<td>{{contact.address}}</td>
+										<td>
+											{{contact.firstname}}
+											<a href="#" class="edit-button" ng-show="!showFirstnameUpdate" ng-click="data = contact.firstname; showFirstnameUpdate = true"><i class="fa fa-edit"></i></a>
+											<div ng-show="showFirstnameUpdate" class="input-group">
+												<input type="text" class="form-control" ng-model="data">
+												<span class="input-group-btn">
+													<button class="btn btn-warning" ng-click="updateFirstname(contact, data); showFirstnameUpdate = false;">Save</button>
+												</span>
+											</div>
+										</td>
+										<td>
+											{{contact.lastname}}
+											<a href="#" class="edit-button" ng-show="!showLastnameUpdate" ng-click="data = contact.lastname; showLastnameUpdate = true"><i class="fa fa-edit"></i></a>
+											<div ng-show="showLastnameUpdate" class="input-group">
+												<input type="text" class="form-control" ng-model="data">
+												<span class="input-group-btn">
+													<button class="btn btn-warning" ng-click="updateLastname(contact, data); showLastnameUpdate = false;">Save</button>
+												</span>
+											</div>
+										</td>
+										<td>
+											{{contact.gender}}
+											<a href="#" class="edit-button" ng-show="!showGenderUpdate" ng-click="data = contact.gender; showGenderUpdate = true"><i class="fa fa-edit"></i></a>
+											<div ng-show="showGenderUpdate" class="input-group">
+												<input type="text" class="form-control" ng-model="data">
+												<span class="input-group-btn">
+													<button class="btn btn-warning" ng-click="updateGender(contact, data); showGenderUpdate = false;">Save</button>
+												</span>
+											</div>
+										</td>
+										<td>
+											{{contact.phone}}
+											<a href="#" class="edit-button" ng-show="!showPhoneUpdate" ng-click="data = contact.phone; showPhoneUpdate = true"><i class="fa fa-edit"></i></a>
+											<div ng-show="showPhoneUpdate" class="input-group">
+												<input type="text" class="form-control" ng-model="data">
+												<span class="input-group-btn">
+													<button class="btn btn-warning" ng-click="updatePhone(contact, data); showPhoneUpdate = false;">Save</button>
+												</span>
+											</div>
+										</td>
+										<td>
+											{{contact.address}}
+											<a href="#" class="edit-button" ng-show="!showAddressUpdate" ng-click="data = contact.address; showAddressUpdate = true"><i class="fa fa-edit"></i></a>
+											<div ng-show="showAddressUpdate" class="input-group">
+												<input type="text" class="form-control" ng-model="data">
+												<span class="input-group-btn">
+													<button class="btn btn-warning" ng-click="updateAddress(contact, data); showAddressUpdate = false;">Save</button>
+												</span>
+											</div>
+										</td>
 										<td>
 											<button class="btn btn-danger" title="Remove Contact" ng-click="delete(contact.email)"><i class="fa fa-close"></i></button>
 										</td>
