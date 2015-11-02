@@ -50,6 +50,26 @@ header#header h2 {
 .list-view .btn .fa {
 	font-size: 16px;
 }
+.list-view tbody td {
+	position: relative;
+}
+.list-view tbody td .edit-button {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 8px;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	color: #d58512;
+}
+.list-view tbody td:hover .edit-button {
+	opacity: 1;
+	filter: alpha(opacity=100);
+}
+.list-view tbody td .input-group {
+	margin-top: 8px;
+	max-width: 300px;
+}
 
 footer#footer {
 	border-top: 3px solid #07A5CC;
