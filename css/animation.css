@@ -1,0 +1,9 @@
+/* Chrome, Safari, Opera */ 
+@-webkit-keyframes heightLight {
+    to {background: #dff0d8;}
+} 
+
+/* Standard syntax */ 
+@keyframes heightLight {
+    to {background: #dff0d8;}
+}
