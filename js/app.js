@@ -1,8 +1,7 @@
-contactManager = angular.module('contactManage', []);
+contactManagement = angular.module('contactManagement', []);
 	
-contactManager.controller('ListContactCtrl', function(){
-	var listContact = this;
-	listContact.contacts = [
+contactManagement.controller('ListContactCtrl', function ($scope){
+	$scope.contacts = [
 		{
 			id:1,
 			email:'demo1@gmail.com',
@@ -32,75 +31,30 @@ contactManager.controller('ListContactCtrl', function(){
 		}
 	];
 
-	listContact.create = function () {
-		var count = listContact.contacts.length;
-
-		listContact.contacts.push({
-			email:listContact.email,
-			firstname: listContact.firstname,
-			lastname: listContact.lastname,
-			gender: listContact.gender,
-			phone: listContact.phone,
-			address: listContact.address
-		});
-
-		if(listContact.contacts.length - count == 1 ) {
-			listContact.email = '';
-			listContact.firstname = '';
-			listContact.lastname = '';
-			listContact.gender = '';
-			listContact.phone = '';
-			listContact.address = '';
-			alert('Add new Contact is success!');
-			$('#addNewModal').modal('hide');
-		} else {
-			alert('Add new Contact is error!');
-		}
-	};
-
-	var getIndexByEmail = function (email) {
-		angular.forEach(listContact.contacts, function (contact) {
+	$scope.delete = function (email) {
+		angular.forEach($scope.contacts, function (contact) {
 			if (contact.email == email) {
-				return listContact.contacts.indexOf(contact);
-			}
-		});
-	}
-
-	listContact.getUpdate = function (email) {
-		angular.forEach(listContact.contacts, function (contact) {
-			if(contact.email == email){
-				$("#updateModal").modal('show');
-				listContact.email = contact.email;
-				listContact.firstname = contact.firstname;
-				listContact.lastname = contact.lastname;
-				listContact.gender = contact.gender;
-				listContact.phone = contact.phone;
-				listContact.address = contact.address;
+				$scope.contacts.splice($scope.contacts.indexOf(contact), 1);
 			}
 		});
 	};
 
-	listContact.update = function (email) {
-		angular.forEach(listContact.contacts, function (contact) {
-			if(contact.email == email){
-				// if( listContact.email == contact.email ||
-				// 	listContact.firstname == contact.firstname ||
-				// 	listContact.lastname == contact.lastname ||
-				// 	listContact.gender == contact.gender ||
-				// 	listContact.phone == contact.phone ||
-				// 	listContact.address == contact.address )
-				// {
-				// 	$("#updateModal .modal-footer").appent('<span>Not any field update!</span>');
-				// };
-			};
-		});
+	$scope.updateName = function(contact, newEmail){
+		contact.email = newEmail;
 	};
 
-	listContact.delete = function (email) {
-		angular.forEach(listContact.contacts, function (contact) {
-			if (contact.email == email) {
-				listContact.contacts.splice(listContact.contacts.indexOf(contact), 1);
-			}
+});
+
+contactManagement.controller('AddContactCtrl', function ($scope) {
+	$scope.create = function (contact) {
+		$scope.contacts.push({
+			email		: contact.email,
+			firstname	: contact.firstname,
+			lastname	: contact.lastname,
+			gender		: contact.gender,
+			phone		: contact.phone,
+			address		: contact.address
 		});
+		$('#addNewModal').modal('hide');
 	};
 });

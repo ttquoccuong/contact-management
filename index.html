@@ -15,6 +15,7 @@
 		<script src="https://code.jquery.com/jquery.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.min.js"></script>
 		<script src="js/app.js"></script>
 
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -32,19 +33,16 @@
 		</header>
 		<main id="main">
 			<div class="container">
-				<div class="contact-manage" ng-app="contactManage">
-					<div ng-controller="ListContactCtrl as listContact">
+				<div class="contact-manage" ng-app="contactManagement">
+					<div ng-controller="ListContactCtrl">
 						<div class="row toolbar">
 							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-								<div class="input-group search-box">
+								<div class="search-box">
 									<input type="text" class="form-control" placeholder="Search ..." ng-model="query">
-									<span class="input-group-btn">
-										<button class="btn btn-primary" title="search contact"><i class="fa fa-search"></i></button>
-									</span>
 								</div>
 							</div>
 							<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-								<button class="btn btn-primary pull-right" data-toggle="modal" data-target="#addNewModal">Add new Contact</button>		
+								<button class="btn btn-primary pull-right" data-toggle="modal" data-target="#addNewModal">Add new Contact</button>
 							</div>
 						</div>
 
@@ -53,35 +51,43 @@
 								<thead>
 									<tr>
 										<th>Email</th>
-										<th>Full name</th>
+										<th>First name</th>
+										<th>Last name</th>
 										<th>Gender</th>
 										<th>Address</th>
 										<th>Phone</th>
 										<th>Option</th>
 									</tr>
 								</thead>
-								<tbody ng-repeat="contact in listContact.contacts | filter:query">
+								<tbody ng-repeat="contact in contacts | filter:query">
 									<tr>
-										<td>{{contact.email}}</td>
-										<td>{{contact.firstname}} {{contact.lastname}}</td>
-										<td>{{contact.gender}}</td>
-										<td>{{contact.address}}</td>
-										<td>{{contact.phone}}</td>
 										<td>
-											<button class="btn btn-warning" title="Edit Contact" ng-click="listContact.getUpdate(contact.email)"><i class="fa fa-edit"></i></button>
-											<button class="btn btn-danger" title="Remove Contact" ng-click="listContact.delete(contact.email)"><i class="fa fa-close"></i></button>
+											{{contact.email}}
+											<a href="#" ng-show="!showUpdate" ng-click="someNewEmail = contact.email; showUpdate = true"><i class="fa fa-edit"></i></a>
+											<div ng-show="showUpdate">
+												<input type="text" ng-model="someNewEmail">
+												<input type="button" value="update" ng-click="updateName(contact, someNewEmail); showUpdate = false;">
+											</div>
+										</td>
+										<td>{{contact.firstname}}</td>
+										<td>{{contact.lastname}}</td>
+										<td>{{contact.gender}}</td>
+										<td>{{contact.phone}}</td>
+										<td>{{contact.address}}</td>
+										<td>
+											<button class="btn btn-danger" title="Remove Contact" ng-click="delete(contact.email)"><i class="fa fa-close"></i></button>
 										</td>
 									</tr>
 								</tbody>
 							</table>
-							<p>Have {{listContact.contacts.length}} contacts</p>
+							<p>Have {{contacts.length}} contacts</p>
 						</div>
 
 						<!-- Add New Modal -->
-						<div class="modal fade" id="addNewModal" tabindex="-1" role="dialog" aria-labelledby="addNewModal">
+						<div class="modal fade" id="addNewModal" tabindex="-1" role="dialog" aria-labelledby="addNewModal" ng-controller="AddContactCtrl">
 							<div class="modal-dialog" role="document">
 								<div class="modal-content">
-									<form ng-submit="listContact.create()">
+									<form ng-submit="create(contact)">
 										<div class="modal-header">
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 											<h4 class="modal-title" id="myModalLabel">Add new Contact</h4>
@@ -89,19 +95,19 @@
 										<div class="modal-body">
 												<div class="input-group">
 													<span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-													<input type="text" class="form-control" placeholder="Email" required="required" ng-model="listContact.email">
+													<input type="text" class="form-control" placeholder="Email" required="required" ng-model="contact.email">
 												</div>
 												<div class="input-group">
 													<span class="input-group-addon"><i class="fa fa-user"></i></span>
-													<input type="text" class="form-control" placeholder="First Name" ng-model="listContact.firstname">
+													<input type="text" class="form-control" placeholder="First Name" ng-model="contact.firstname">
 												</div>
 												<div class="input-group">
 													<span class="input-group-addon"><i class="fa fa-user"></i></span>
-													<input type="text" class="form-control" placeholder="Last Name" required="required" ng-model="listContact.lastname">
+													<input type="text" class="form-control" placeholder="Last Name" required="required" ng-model="contact.lastname">
 												</div>
 												<div class="input-group">
 													<span class="input-group-addon"><i class="fa fa-genderless"></i></span>
-													<select name="" class="form-control" ng-model="listContact.gender">
+													<select name="" class="form-control" ng-model="contact.gender">
 														<option value="">Gender</option>
 														<option value="male">Male</option>
 														<option value="female">Female</option>
@@ -110,11 +116,11 @@
 												</div>
 												<div class="input-group">
 													<span class="input-group-addon"><i class="fa fa-phone"></i></span>
-													<input type="text" class="form-control" placeholder="Address" ng-model="listContact.address">
+													<input type="text" class="form-control" placeholder="Phone" ng-model="contact.phone">
 												</div>
 												<div class="input-group">
 													<span class="input-group-addon"><i class="fa fa-location-arrow"></i></span>
-													<input type="text" class="form-control" placeholder="Phone Number" ng-model="listContact.phone">
+													<input type="text" class="form-control" placeholder="Address" ng-model="contact.address">
 												</div>
 										</div>
 										<div class="modal-footer">
@@ -127,10 +133,10 @@
 						</div>
 
 						<!-- Add New Modal -->
-						<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModal">
+						<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModal" ng-controller="EditContactCtrl">
 							<div class="modal-dialog" role="document">
 								<div class="modal-content">
-									<form ng-submit="listContact.update(listContact.email)">
+									<form ng-submit="update(contact)">
 										<div class="modal-header">
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 											<h4 class="modal-title" id="myModalLabel">Add new Contact</h4>
@@ -138,19 +144,19 @@
 										<div class="modal-body">
 												<div class="input-group">
 													<span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-													<input type="text" class="form-control" placeholder="Email" required="required" ng-value="listContact.email" ng-model="listContact.email">
+													<input type="text" class="form-control" placeholder="Email" required="required" ng-value="email" ng-model="contact.email">
 												</div>
 												<div class="input-group">
 													<span class="input-group-addon"><i class="fa fa-user"></i></span>
-													<input type="text" class="form-control" placeholder="First Name" ng-value="listContact.firstname" ng-model="listContact.firstname">
+													<input type="text" class="form-control" placeholder="First Name" ng-value="firstname" ng-model="contact.firstname">
 												</div>
 												<div class="input-group">
 													<span class="input-group-addon"><i class="fa fa-user"></i></span>
-													<input type="text" class="form-control" placeholder="Last Name" required="required" ng-value="listContact.lastname" ng-model="listContact.lastname">
+													<input type="text" class="form-control" placeholder="Last Name" required="required" ng-value="lastname" ng-model="contact.lastname">
 												</div>
 												<div class="input-group">
 													<span class="input-group-addon"><i class="fa fa-genderless"></i></span>
-													<select name="" class="form-control" ng-model="listContact.gender">
+													<select name="" class="form-control" ng-model="contact.gender">
 														<option value="">Gender</option>
 														<option value="">Male</option>
 														<option value="">Female</option>
@@ -159,11 +165,11 @@
 												</div>
 												<div class="input-group">
 													<span class="input-group-addon"><i class="fa fa-phone"></i></span>
-													<input type="text" class="form-control" placeholder="Address" ng-value="listContact.phone" ng-model="listContact.address">
+													<input type="text" class="form-control" placeholder="Address" ng-value="phone" ng-model="contact.address">
 												</div>
 												<div class="input-group">
 													<span class="input-group-addon"><i class="fa fa-location-arrow"></i></span>
-													<input type="text" class="form-control" placeholder="Phone Number" ng-value="listContact.address" ng-model="listContact.phone">
+													<input type="text" class="form-control" placeholder="Phone Number" ng-value="address" ng-model="contact.phone">
 												</div>
 										</div>
 										<div class="modal-footer">
