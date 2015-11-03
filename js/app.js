@@ -88,5 +88,12 @@ contactManagement.controller('AddContactCtrl', function ($scope) {
 			address		: contact.address
 		});
 		$('#addNewModal').modal('hide');
+		// Reset Fields
+		contact.email		= "";
+		contact.firstname	= "";
+		contact.lastname	= "";
+		contact.gender		= "";
+		contact.phone		= "";
+		contact.address		= "";
 	};
 });

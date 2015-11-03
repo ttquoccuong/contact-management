@@ -83,3 +83,40 @@ footer#footer {
 .sortorder.reverse:after {
 	content: "\f0de";
 }
+
+.frm-group {}
+.frm-group .modal-content {
+	overflow: hidden;
+}
+.frm-group .modal-header {
+	text-transform: capitalize;
+	background-color: #337ab7;
+	color: #fff;
+}
+
+.frm-group .input-group {
+	margin-bottom: 10px;
+}
+.frm-group .input-group-addon {
+	min-width: 40px;
+}
+
+@media (min-width: 768px) and (max-width: 992px){
+	.list-view tbody .btn + .btn {
+		margin-top: 5px;
+	}
+}
+
+@media (max-width: 767px){
+	.search-box {
+		margin-bottom: 20px;
+	}
+}
+
+@media (min-height: 600px){
+	footer#footer {
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+	}
+}
