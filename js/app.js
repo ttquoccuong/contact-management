@@ -49,6 +49,8 @@ contactManagement.controller('ListContactCtrl', function ($scope){
 		}
 	];
 
+	$scope.genders = ['Male','Female','Others'];
+
 	$scope.delete = function (email) {
 		angular.forEach($scope.contacts, function (contact) {
 			if (contact.email == email) {
@@ -57,15 +59,17 @@ contactManagement.controller('ListContactCtrl', function ($scope){
 		});
 	};
 
-	$scope.updateEmail 		= function(contact, data){ contact.email = data; };
-	$scope.updateFirstname 	= function(contact, data){ contact.firstname = data; };
-	$scope.updateLastname 	= function(contact, data){ contact.lastname = data; };
-	$scope.updateGender 	= function(contact, data){ contact.gender = data; };
-	$scope.updatePhone 		= function(contact, data){ contact.phone = data; };
-	$scope.updateAddress 	= function(contact, data){ contact.address = data; };
+	$scope.update = function (contact, data) {
+		contact.email		= data.email;
+		contact.firstname	= data.firstname;
+		contact.lastname	= data.lastname;
+		contact.gender		= data.gender;
+		contact.phone		= data.phone;
+		contact.address		= data.address;
+	}
 
-	$scope.predicate = 'email';
-	$scope.reverse = true;
+	$scope.predicate = '';
+	$scope.reverse = false;
 	$scope.order = function(predicate) {
 		$scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
 		$scope.predicate = predicate;
