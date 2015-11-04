@@ -11,7 +11,7 @@
 	border: 0;
 }
 
-/* Site style */
+/* header style */
 header#header {
 	background: #07A5CC;
 	color: #fff;
@@ -21,11 +21,10 @@ header#header h2 {
 	margin: 20px 0;
 }
 
+/*content style*/
 .toolbar {
 	margin-bottom: 30px; 
 }
-
-.list-view {}
 .list-view .table {
 	border: 1px solid #ddd;
 	-webkit-border-radius: 5px;
@@ -33,26 +32,18 @@ header#header h2 {
 	border-radius: 5px;
 	margin-bottom: 10px;
 }
-.list-view .table th {
-	background: #ddd;
-}
-
+.list-view .table th { background: #ddd; }
 .list-view .table th:last-child,
 .list-view .table td:last-child {
 	width: 100px;
 	text-align: center;
 }
-
 .list-view .btn {
 	padding-right: 10px;
 	padding-left: 10px;
 }
-.list-view .btn .fa {
-	font-size: 16px;
-}
-.list-view tbody td {
-	position: relative;
-}
+.list-view .btn .fa { font-size: 16px; }
+.list-view tbody td { position: relative; }
 .list-view tbody td .edit-button {
 	position: absolute;
 	top: 0;
@@ -71,12 +62,6 @@ header#header h2 {
 	max-width: 300px;
 }
 
-footer#footer {
-	border-top: 3px solid #07A5CC;
-	margin-top: 30px;
-	padding-top: 15px;
-}
-
 .sortorder:after {
 	content: '\f0dd';
 }
@@ -84,7 +69,6 @@ footer#footer {
 	content: "\f0de";
 }
 
-.frm-group {}
 .frm-group .modal-content {
 	overflow: hidden;
 }
@@ -93,27 +77,24 @@ footer#footer {
 	background-color: #337ab7;
 	color: #fff;
 }
+.frm-group .input-group { margin-bottom: 10px; }
+.frm-group .input-group-addon { min-width: 40px; }
 
-.frm-group .input-group {
-	margin-bottom: 10px;
-}
-.frm-group .input-group-addon {
-	min-width: 40px;
+/*footer style*/
+footer#footer {
+	border-top: 3px solid #07A5CC;
+	padding-top: 15px;
 }
 
 @media (min-width: 768px) and (max-width: 992px){
-	.list-view tbody .btn + .btn {
-		margin-top: 5px;
-	}
+	.list-view tbody .btn + .btn { margin-top: 5px;	}
 }
 
 @media (max-width: 767px){
-	.search-box {
-		margin-bottom: 20px;
-	}
+	.search-box { margin-bottom: 20px; }
 }
 
-@media (min-height: 700px){
+@media (max-width: 767px) and (min-height: 800px) {
 	footer#footer {
 		position: fixed;
 		bottom: 0;
