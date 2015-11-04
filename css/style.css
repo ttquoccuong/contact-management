@@ -113,7 +113,7 @@ footer#footer {
 	}
 }
 
-@media (min-height: 600px){
+@media (min-height: 700px){
 	footer#footer {
 		position: fixed;
 		bottom: 0;
