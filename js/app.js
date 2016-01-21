@@ -79,21 +79,35 @@ contactManagement.controller('ListContactCtrl', function ($scope){
 
 contactManagement.controller('AddContactCtrl', function ($scope) {
 	$scope.create = function (contact) {
-		$scope.contacts.push({
-			email		: contact.email,
-			firstname	: contact.firstname,
-			lastname	: contact.lastname,
-			gender		: contact.gender,
-			phone		: contact.phone,
-			address		: contact.address
-		});
-		$('#addNewModal').modal('hide');
-		// Reset Fields
-		contact.email		= "";
-		contact.firstname	= "";
-		contact.lastname	= "";
-		contact.gender		= "";
-		contact.phone		= "";
-		contact.address		= "";
+		if($scope.checkEmailExist($scope.contacts, contact.email)){
+			alert('Email is exist!');
+		} else {
+			$scope.contacts.push({
+				email		: contact.email,
+				firstname	: contact.firstname,
+				lastname	: contact.lastname,
+				gender		: contact.gender,
+				phone		: contact.phone,
+				address		: contact.address
+			});
+			$('#addNewModal').modal('hide');
+			// Reset Fields
+			contact.email		= "";
+			contact.firstname	= "";
+			contact.lastname	= "";
+			contact.gender		= "";
+			contact.phone		= "";
+			contact.address		= "";
+		}
 	};
+
+	$scope.checkEmailExist = function (contacts, email) {
+		isEmail = false;
+		angular.forEach(contacts, function (contact) {
+			if(contact.email === email){
+				isEmail = true;
+			}
+		});
+		return isEmail;
+	}
 });
